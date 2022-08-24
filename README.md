@@ -18,3 +18,6 @@ specify where to save outputs:
 SALMON_COUNTS_DIR= $dir/
 ROLLUP_RESULTS_DIR= $dir/
 ```
+running the tool for all samples, then rolling up outputs:
+ for .qs files
+ for .rds files
