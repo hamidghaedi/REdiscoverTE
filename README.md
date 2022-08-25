@@ -1,7 +1,7 @@
 # REdiscoverTE
-Pipeline to run REdiscoverTE tool on paired-end fastq files and creating expression matrix for genes and TEs (transposon elements).
+A pipeline to run REdiscoverTE tool on paired-end fastq data to obtain expression matrix for genes and TEs (transposon elements) simultaneously.
 
-A detailed instruction can be find [here](http://research-pub.gene.com/REdiscoverTEpaper/software/REdiscoverTE_README.html), Also, following this tutorial you will be able to install and run the software.  
+A detailed instruction on the software can be find [here](http://research-pub.gene.com/REdiscoverTEpaper/software/REdiscoverTE_README.html), Also, following this tutorial you will be able to install and run the software.  
 
 
 ### Prerequisites:
@@ -43,33 +43,46 @@ mv Makefile Makefile_backup
 
 ### Running the pipline
 
+#### Time for each step 
+(based on the authors)
+
+
+**Index generation**: 90 minutes on a 2017 16-core 2.6 GHz Xeon processor. [This step would be needed only the very first time that you run the software]
+
+**Salmon alignment**: ~30-90 minutes. ~30 minutes for a 64 million sequence 50bp SE input FASTQ file on the same Xeon CPU as above.
+
+**Rollup**: ~5 minutes per quant.sf file. (There will be one quant.sf file for each input sample: for single-end reads, there will be a 1:1 correspondence between .fastq and quant.sf files).
+
+
 ```shel
+# define directories
 PROJECT='/full/path/to/project/directory'
 RE_discoverTE_PATH='/full/path/to/REdiscoverTE/'
 
-for dir in PROJECT/*; do
+# loop
+for dir in $PROJECT/*; do
   echo $dir
+  # make a directory to store the result
+  mkdir -p $dir/result
   SAMPLE_NAME=$(basename $dir)
+  #echo $(basename $dir)
   R_1="${dir}"/"${SAMPLE_NAME}"_R1.fq.gz
   R_2="${dir}"/"${SAMPLE_NAME}"_R2.fq.gz
-  
-  # copy Makefile_backup to Makefile 
+  echo $R_1
+  echo $R_2
+  # copying Makefile_backup to Makefile 
   cp "${RE_discoverTE_PATH}"/Makefile_backup "${RE_discoverTE_PATH}"/Makefile
-  
-  # Specifying variables by editting makefile
+  # editting makefile
   sed -i "s|FASTQ_READS_1=SIMULATED_FASTQS/input_R1.fq.gz|FASTQ_READS_1=$R_1|g" "${RE_discoverTE_PATH}"/Makefile
   sed -i "s|FASTQ_READS_2=SIMULATED_FASTQS/input_R2.fq.gz|FASTQ_READS_2=$R_2|g" "${RE_discoverTE_PATH}"/Makefile
-  sed -i "s|SALMON_COUNTS_DIR=Step_2_salmon_counts|SALMON_COUNTS_DIR=$dir|g" "${RE_discoverTE_PATH}"/Makefile
-  sed -i "s|ROLLUP_RESULTS_DIR=Step_4_rollup|ROLLUP_RESULTS_DIR=$dir|g" "${RE_discoverTE_PATH}"/Makefile
-  
-  # changing directory to RE_discoverTE_PATH and running the tool
+  sed -i "s|SALMON_COUNTS_DIR=Step_2_salmon_counts|SALMON_COUNTS_DIR=$dir/result|g" "${RE_discoverTE_PATH}"/Makefile
+  sed -i "s|ROLLUP_RESULTS_DIR=Step_4_rollup|ROLLUP_RESULTS_DIR=$dir/result|g" "${RE_discoverTE_PATH}"/Makefile
   cd $RE_discoverTE_PATH
   make all
-  
-  #moving Makefile 
-  mv "${RE_discoverTE_PATH}"/Makefile $dir/
-  cd $dir
+  mv "${RE_discoverTE_PATH}"/Makefile $dir/result
 done
 ```
-### Rolling up the results
+### Processing the result files
+
+
 
