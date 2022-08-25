@@ -3,13 +3,8 @@ Pipeline to run REdiscoverTE tool on paired-end fastq files and creating express
 
 A detailed instruction can be find [here](http://research-pub.gene.com/REdiscoverTEpaper/software/REdiscoverTE_README.html), Also, following this tutorial you will be able to install and run the software.  
 
-To download the software :
 
-```shell
-wget http://research-pub.gene.com/REdiscoverTEpaper/data/REdiscoverTEdata_1.0.1.tar.gz
-gunzip REdiscoverTEdata_1.0.1.tar.gz
-```
-Prerequisites:
+### Prerequisites:
 
 REdiscoverTE is written in R and to run the software two programs must already be installed: ```R``` and ```salmon```.
 
@@ -23,13 +18,21 @@ Required RAM and disk space
 - At least 30 GB of RAM is recommended for Salmon. Salmon requires a substantial amount of RAM with the included 5-million-entry FASTA reference.
 
 
-To download the software :
+### REdiscoverTE download :
 
 ```shell
 wget http://research-pub.gene.com/REdiscoverTEpaper/data/REdiscoverTEdata_1.0.1.tar.gz
-gunzip REdiscoverTEdata_1.0.1.tar.gz
+tar -xf REdiscoverTEdata_1.0.1.tar.gz
 ```
 
+This thread is all about running REdiscoverTE on paired-end bulk RNA-seq files coming from human sources (patients or cell-lines). The pipeline assumed that: The fastq files for each sample are in a directory called `sample_name` and are named as `sample_name_R1.fq.gz` and  `sample_name_R2.fq.gz`;
+
+```
+├── project
+│   └── sample_name
+│       ├── sample_name_R1.fq.gz
+│       └── sample_name_R2.fq.gz
+```
 
 
 
@@ -51,5 +54,7 @@ SALMON_COUNTS_DIR= $dir/
 ROLLUP_RESULTS_DIR= $dir/
 ```
 running the tool for all samples, then rolling up outputs:
+
  for .qs files
+ 
  for .rds files
