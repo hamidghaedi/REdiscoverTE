@@ -17,14 +17,6 @@ Required RAM and disk space
 - 89 gigabytes of disk space is required for the Salmon index.
 - At least 30 GB of RAM is recommended for Salmon. Salmon requires a substantial amount of RAM with the included 5-million-entry FASTA reference.
 
-
-### REdiscoverTE download :
-
-```shell
-wget http://research-pub.gene.com/REdiscoverTEpaper/data/REdiscoverTEdata_1.0.1.tar.gz
-tar -xf REdiscoverTEdata_1.0.1.tar.gz
-```
-
 This thread is all about running REdiscoverTE on paired-end bulk RNA-seq files coming from human sources (patients or cell-lines). The pipeline assumed that: The fastq files for each sample are in a directory called `sample_name` and are named as `sample_name_R1.fq.gz` and  `sample_name_R2.fq.gz`;
 
 ```
@@ -34,27 +26,51 @@ This thread is all about running REdiscoverTE on paired-end bulk RNA-seq files c
 │       └── sample_name_R2.fq.gz
 ```
 
+### REdiscoverTE download :
 
+```shell
+wget http://research-pub.gene.com/REdiscoverTEpaper/data/REdiscoverTEdata_1.0.1.tar.gz
+tar -xf REdiscoverTEdata_1.0.1.tar.gz
+```
 
- general idea:edit makefile per sample
+There is a `Makefile` in the `RediscoverTE` , and it is needed by the pipeline to be renamed to `Makefile_backup` ; 
+
+```shell
+# change directory to REdiscoverTE
+mv Makefile Makefile_backup
 
 ```
-for dir in fasqdir
-r1 = dir/*.R1_fastq.gz
-r2 = dir/*.R2_fastq.gz
-```
-replace fastq_R1 (_R2) file address with r1 (r2) in the makefile in RediscoverTE directory
-```
-FASTQ_READS_1=r1
-FASTQ_READS_2=r2
-```
-specify where to save outputs:
-```
-SALMON_COUNTS_DIR= $dir/
-ROLLUP_RESULTS_DIR= $dir/
-```
-running the tool for all samples, then rolling up outputs:
 
- for .qs files
- 
- for .rds files
+### Running the pipline
+
+```shel
+# change '/full/path/to/project/' in the following line with the appropirate path
+
+for dir in full/path/to/project/*; do
+  echo $dir
+  SAMPLE_NAME=$(basename $dir)
+  R_1="${dir}"/"${SAMPLE_NAME}"_R1.fq.gz
+  R_2="${dir}"/"${SAMPLE_NAME}"_R2.fq.gz
+  
+  # copy Makefile_backup to Makefile 
+  # change '/full/path/to/REdiscoverTE/' in the following line with the appropirate path
+  RE_discoverTE_PATH='/full/path/to/REdiscoverTE/'
+  cp "${RE_discoverTE_PATH}"/Makefile_backup "${RE_discoverTE_PATH}"/Makefile
+  
+  # Specifying variables by editting makefile
+  sed -i "s|FASTQ_READS_1=SIMULATED_FASTQS/input_R1.fq.gz|FASTQ_READS_1=$R_1|g" "${RE_discoverTE_PATH}"/Makefile
+  sed -i "s|FASTQ_READS_2=SIMULATED_FASTQS/input_R2.fq.gz|FASTQ_READS_2=$R_2|g" "${RE_discoverTE_PATH}"/Makefile
+  sed -i "s|SALMON_COUNTS_DIR=Step_2_salmon_counts|SALMON_COUNTS_DIR=$dir|g" "${RE_discoverTE_PATH}"/Makefile
+  sed -i "s|ROLLUP_RESULTS_DIR=Step_4_rollup|ROLLUP_RESULTS_DIR=$dir|g" "${RE_discoverTE_PATH}"/Makefile
+  
+  # changing directory to RE_discoverTE_PATH and running the tool
+  cd $RE_discoverTE_PATH
+  make all
+  
+  #moving Makefile 
+  mv "${RE_discoverTE_PATH}"/Makefile $dir/
+  cd $dir
+done
+```
+### Rolling up the results
+
