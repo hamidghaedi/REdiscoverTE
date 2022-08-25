@@ -44,17 +44,16 @@ mv Makefile Makefile_backup
 ### Running the pipline
 
 ```shel
-# change '/full/path/to/project/' in the following line with the appropirate path
+PROJECT='/full/path/to/project/directory'
+RE_discoverTE_PATH='/full/path/to/REdiscoverTE/'
 
-for dir in full/path/to/project/*; do
+for dir in PROJECT/*; do
   echo $dir
   SAMPLE_NAME=$(basename $dir)
   R_1="${dir}"/"${SAMPLE_NAME}"_R1.fq.gz
   R_2="${dir}"/"${SAMPLE_NAME}"_R2.fq.gz
   
   # copy Makefile_backup to Makefile 
-  # change '/full/path/to/REdiscoverTE/' in the following line with the appropirate path
-  RE_discoverTE_PATH='/full/path/to/REdiscoverTE/'
   cp "${RE_discoverTE_PATH}"/Makefile_backup "${RE_discoverTE_PATH}"/Makefile
   
   # Specifying variables by editting makefile
