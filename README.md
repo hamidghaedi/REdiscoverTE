@@ -117,7 +117,7 @@ After running the REdiscoverTE tool , a directory called "result" would be gener
 
 
 
-So the next step is to merge sample level ```RDS``` files to generate a project level ```RDS``` per file (15 project level files). The following R script will do this job; it goes into each directory , read a file then merge all files from all samples into one file. 
+So the next step is to merge sample level ```RDS``` files to generate a project level ```RDS``` per file (15 project level files). The following R script will do this job; it goes into each directory , read a file then merge all files from all samples into one file. These files are considred as input for downstream analysis.
 
 A copy of the following script can be found in the repository.
 
