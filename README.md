@@ -131,7 +131,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/GENE_1_raw_counts.RDS"))
   df <- df$counts
-  GENE_1_raw_counts = cbind(GENE_1_raw_counts, df)
+  GENE_1_raw_counts <- cbind(GENE_1_raw_counts, df)
 }
 GENE_1_raw_counts <- GENE_1_raw_counts[,-1]
 colnames(GENE_1_raw_counts) <- sample_names
@@ -145,7 +145,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/GENE_2_counts_normalized.RDS"))
   df <- df$counts
-  GENE_2_counts_normalized = cbind(GENE_2_counts_normalized, df)
+  GENE_2_counts_normalized <- cbind(GENE_2_counts_normalized, df)
 }
 GENE_2_counts_normalized <- GENE_2_counts_normalized[,-1]
 colnames(GENE_2_counts_normalized) <- sample_names
@@ -159,7 +159,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/GENE_3_TPM.RDS"))
   df <- df$counts
-  GENE_3_TPM = cbind(GENE_3_TPM, df)
+  GENE_3_TPM <- cbind(GENE_3_TPM, df)
 }
 GENE_3_TPM <- GENE_3_TPM[,-1]
 colnames(GENE_3_TPM) <- sample_names
@@ -173,7 +173,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_all_1_raw_counts.RDS"))
   df <- df$counts
-  RE_all_1_raw_counts = cbind(RE_all_1_raw_counts, df)
+  RE_all_1_raw_counts <- cbind(RE_all_1_raw_counts, df)
 }
 RE_all_1_raw_counts <- RE_all_1_raw_counts[,-1]
 colnames(RE_all_1_raw_counts) <- sample_names
@@ -187,7 +187,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_all_2_counts_normalized.RDS"))
   df <- df$counts
-  RE_all_2_counts_normalized = cbind(RE_all_2_counts_normalized, df)
+  RE_all_2_counts_normalized <- cbind(RE_all_2_counts_normalized, df)
 }
 RE_all_2_counts_normalized <- RE_all_2_counts_normalized[,-1]
 colnames(RE_all_2_counts_normalized) <- sample_names
@@ -200,7 +200,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_all_3_TPM.RDS"))
   df <- df$counts
-  RE_all_3_TPM = cbind(RE_all_3_TPM, df)
+  RE_all_3_TPM <- cbind(RE_all_3_TPM, df)
 }
 RE_all_3_TPM <- RE_all_3_TPM[,-1]
 colnames(RE_all_3_TPM) <- sample_names
@@ -213,7 +213,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_exon_1_raw_counts.RDS"))
   df <- df$counts
-  RE_exon_1_raw_counts = cbind(RE_exon_1_raw_counts, df)
+  RE_exon_1_raw_counts <- cbind(RE_exon_1_raw_counts, df)
 }
 RE_exon_1_raw_counts <- RE_exon_1_raw_counts[,-1]
 colnames(RE_exon_1_raw_counts) <- sample_names
@@ -226,7 +226,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_exon_2_counts_normalized.RDS"))
   df <- df$counts
-  RE_exon_2_counts_normalized = cbind(RE_exon_2_counts_normalized, df)
+  RE_exon_2_counts_normalized <- cbind(RE_exon_2_counts_normalized, df)
 }
 RE_exon_2_counts_normalized <- RE_exon_2_counts_normalized[,-1]
 colnames(RE_exon_2_counts_normalized) <- sample_names
@@ -239,7 +239,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_exon_3_TPM.RDS"))
   df <- df$counts
-  RE_exon_3_TPM = cbind(RE_exon_3_TPM, df)
+  RE_exon_3_TPM <- cbind(RE_exon_3_TPM, df)
 }
 RE_exon_3_TPM <- RE_exon_3_TPM[,-1]
 colnames(RE_exon_3_TPM) <- sample_names
@@ -252,7 +252,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_intergenic_1_raw_counts.RDS"))
   df <- df$counts
-  RE_intergenic_1_raw_counts = cbind(RE_intergenic_1_raw_counts, df)
+  RE_intergenic_1_raw_counts <- cbind(RE_intergenic_1_raw_counts, df)
 }
 RE_intergenic_1_raw_counts <- RE_intergenic_1_raw_counts[,-1]
 colnames(RE_intergenic_1_raw_counts) <- sample_names
@@ -265,7 +265,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_intergenic_2_counts_normalized.RDS"))
   df <- df$counts
-  RE_intergenic_2_counts_normalized = cbind(RE_intergenic_2_counts_normalized, df)
+  RE_intergenic_2_counts_normalized <- cbind(RE_intergenic_2_counts_normalized, df)
 }
 RE_intergenic_2_counts_normalized <- RE_intergenic_2_counts_normalized[,-1]
 colnames(RE_intergenic_2_counts_normalized) <- sample_names
@@ -279,7 +279,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_intergenic_3_TPM.RDS"))
   df <- df$counts
-  RE_intergenic_3_TPM = cbind(RE_intergenic_3_TPM, df)
+  RE_intergenic_3_TPM <- cbind(RE_intergenic_3_TPM, df)
 }
 RE_intergenic_3_TPM <- RE_intergenic_3_TPM[,-1]
 colnames(RE_intergenic_3_TPM) <- sample_names
@@ -293,7 +293,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_intron_1_raw_counts.RDS"))
   df <- df$counts
-  RE_intron_1_raw_counts = cbind(RE_intron_1_raw_counts, df)
+  RE_intron_1_raw_counts <- cbind(RE_intron_1_raw_counts, df)
 }
 RE_intron_1_raw_counts <- RE_intron_1_raw_counts[,-1]
 colnames(RE_intron_1_raw_counts) <- sample_names
@@ -306,7 +306,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_intron_2_counts_normalized.RDS"))
   df <- df$counts
-  RE_intron_2_counts_normalized = cbind(RE_intron_2_counts_normalized, df)
+  RE_intron_2_counts_normalized <- cbind(RE_intron_2_counts_normalized, df)
 }
 RE_intron_2_counts_normalized <- RE_intron_2_counts_normalized[,-1]
 colnames(RE_intron_2_counts_normalized) <- sample_names
@@ -319,7 +319,7 @@ for(d in 1:length(prj_dir_path)){
   print(paste0(d, "_", sample_names[d]))
   df <- readRDS(paste0(prj_dir_path[d],"/result/RE_intron_3_TPM.RDS"))
   df <- df$counts
-  RE_intron_3_TPM = cbind(RE_intron_3_TPM, df)
+  RE_intron_3_TPM <- cbind(RE_intron_3_TPM, df)
 }
 RE_intron_3_TPM <- RE_intron_3_TPM[,-1]
 colnames(RE_intron_3_TPM) <- sample_names
