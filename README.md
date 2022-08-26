@@ -84,6 +84,33 @@ done
 ```
 ### Processing the result files
 
+After running the REdiscoverTE tool , a directory called "result" would be generated in each sample directory. In the result directory , should be 15 different ```RDS``` file which are needed for downstream analysis. There files are :
+
+**GENE**: Transcript-level expression values:
+- GENE_1_raw_counts.RDS: raw counts DGEList data object.
+- GENE_2_counts_normalized.RDS: normalized counts (by total gene counts) DGEList data object.
+- GENE_3_TPM.RDS: TPM (transcripts per million) for each gene/transcript. DGEList data object.
+**RE all**: Repetitive elements found anywhere in the genome. Granularity for all RE reporting is at repName level (where the three levels we use are name, family, and class, in increasing order of generality).
+- RE_all_1_raw_counts.RDS: raw counts DGEList data object.
+- RE_all_2_counts_normalized.RDS: note that counts are normalized by total gene counts
+- RE_all_3_TPM.RDS: TPM (transcripts per million) for each repetitive element ‘repName’. DGEList data object.
+**RE exon**: Subset of RE all: only repetitive elements found at least partially within an annotated exon.
+- RE_exon_1_raw_counts.RDS: raw counts DGEList data object.
+- RE_exon_2_counts_normalized.RDS: counts are normalized by total gene counts
+- RE_exon_3_TPM.RDS: TPM (transcripts per million) for each repetitive element ‘repName’. DGEList data object.
+**RE intron**: Subset of RE all: only repetitive elements that do not have any overlap with an exon, and have some overlap with an intron.
+- RE_intron_1_raw_counts.RDS: raw counts DGEList data object.
+- RE_intron_2_counts_normalized.RDS:counts are normalized by total gene counts
+- RE_intron_3_TPM.RDS: TPM (transcripts per million) for each repetitive element ‘repName’. DGEList data object.
+**RE intergenic**: Subset of RE all: only repetitive elements that have no overlap with annotated introns or exons.
+- RE_intergenic_1_raw_counts.RDS: raw counts DGEList data object.
+- RE_intergenic_2_counts_normalized.RDS: counts are normalized by total gene counts
+- RE_intergenic_3_TPM.RDS: TPM (transcripts per million) for each repetitive element ‘repName’. DGEList data object.
+
+
+
+So the next step is to merge sample level ```RDS``` files to generate a project level ```RDS``` per file (15 project level files). The following R script will do this job; it goes into each directory , read a file then merge all files from all samples into one file. 
+
 A copy of the following script can be found in the repository.
 
 ```R
