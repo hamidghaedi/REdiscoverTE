@@ -44,7 +44,7 @@ mv Makefile Makefile_backup
 ### Running the pipline
 
 #### Time for each step 
-(based on the authors)
+(based on the REdiscoverTE authors)
 
 
 **Index generation**: 90 minutes on a 2017 16-core 2.6 GHz Xeon processor. [This step would be needed only the very first time that you run the software]
