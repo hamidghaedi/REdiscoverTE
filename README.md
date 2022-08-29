@@ -53,6 +53,10 @@ mv Makefile Makefile_backup
 
 **Rollup**: ~5 minutes per quant.sf file. (There will be one quant.sf file for each input sample: for single-end reads, there will be a 1:1 correspondence between .fastq and quant.sf files).
 
+**NB**
+
+A shell script to run the following code chunck can be find in the repo by the name `REdiscoverTE_run.sh`. This can be run on any HPC with **Slurm Workload Manager** such as ComputeCanada. You need to add your email address to the line 10 and specify absolute path to the _project_ and _REdiscoverTE_ directories on line 20 and 21, respectively. 
+
 
 ```shel
 # define directories
