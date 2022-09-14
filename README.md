@@ -29,8 +29,8 @@ This thread is all about running REdiscoverTE on paired-end bulk RNA-seq files c
 ### REdiscoverTE download :
 
 ```shell
-wget http://research-pub.gene.com/REdiscoverTEpaper/data/REdiscoverTEdata_1.0.1.tar.gz
-tar -xf REdiscoverTEdata_1.0.1.tar.gz
+wget http://research-pub.gene.com/REdiscoverTEpaper/software/REdiscoverTE_1.0.1.tar.gz
+tar -xf REdiscoverTE_1.0.1.tar.gz
 ```
 
 There is a `Makefile` in the `RediscoverTE` , and it is needed by the pipeline to be renamed to `Makefile_backup` ; 
